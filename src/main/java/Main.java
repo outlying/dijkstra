@@ -105,6 +105,10 @@ public class Main {
                 this.index = index;
             }
 
+            public Set<Connection> getConnections() {
+                return connections;
+            }
+
             private boolean addConnection(Connection connection) {
                 return connections.add(connection);
             }
