@@ -1,0 +1,24 @@
+# Java class files
+*.class
+
+# Gradle files
+.gradle
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# IntelliJ IDEA
+*.iml
+*.iws
+/.idea/
+
+# Mac OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
