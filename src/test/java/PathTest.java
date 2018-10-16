@@ -47,9 +47,27 @@ public class PathTest {
         Set<Main.Triple<Integer, Integer, Float>> graph = graph(
                 triple(1, 2, 5f));
 
-        List<Result> correctResults = correctResults(
+        Collection<Result> correctResults = correctResults(
                 indexResult(1, 0f), // Trivial, if start and end  node is the same the we should get 0
                 indexResult(2, 1 / 5f));
+
+        verify(graph, correctResults);
+    }
+
+    /**
+     * Graf:
+     * <p>
+     * [1]--(5)--[2]--(2)--[3]
+     */
+    @Test
+    public void lessSimple() {
+        Set<Main.Triple<Integer, Integer, Float>> graph = graph(
+                triple(1, 2, 5f),
+                triple(2, 3, 2f));
+
+        Collection<Result> correctResults = correctResults(
+                indexResult(2, 0.2f),
+                indexResult(3, 3.7f));
 
         verify(graph, correctResults);
     }
@@ -77,7 +95,7 @@ public class PathTest {
                 triple(3, 4, 2f),
                 triple(2, 4, 10f));
 
-        List<Result> correctResults = correctResults(
+        Collection<Result> correctResults = correctResults(
                 indexResult(2, 0.5f),
                 indexResult(3, 0.2f),
                 indexResult(4, 1.5f));
@@ -88,7 +106,7 @@ public class PathTest {
     /**
      * Weryfikuje graf
      */
-    private void verify(Set<Main.Triple<Integer, Integer, Float>> graph, List<Result> results) {
+    private void verify(Set<Main.Triple<Integer, Integer, Float>> graph, Collection<Result> results) {
         Path path = factoryPath(graph);
 
         for (Result result : results) {
@@ -110,8 +128,8 @@ public class PathTest {
     /**
      * Pomocnicza dla łatwiejszego wyrażenia rezultatów
      */
-    private static List<Result> correctResults(Result... result) {
-        List<Result> resultsList = new ArrayList<>();
+    private static Collection<Result> correctResults(Result... result) {
+        Set<Result> resultsList = new HashSet<>();
         Collections.addAll(resultsList, result);
         return resultsList;
     }
@@ -151,6 +169,20 @@ public class PathTest {
         public Result(Integer endPointIndex, Float cost) {
             this.endPointIndex = endPointIndex;
             this.cost = cost;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Result result = (Result) o;
+            return Objects.equals(endPointIndex, result.endPointIndex) &&
+                    Objects.equals(cost, result.cost);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(endPointIndex, cost);
         }
     }
 }
