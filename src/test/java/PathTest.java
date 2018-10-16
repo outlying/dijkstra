@@ -78,7 +78,9 @@ public class PathTest {
             System.out.println("Testing for index " + result.endPointIndex);
             Float calculatedCost = path.findShortestCost(1, result.endPointIndex);
             Float correctCost = result.cost;
-            assertEquals(calculatedCost, correctCost);
+            assertEquals(correctCost, calculatedCost);
+            System.out.println("Index " + result.endPointIndex + " calculation valid");
+            System.out.println("----------------------------");
         }
     }
 
