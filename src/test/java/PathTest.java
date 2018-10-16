@@ -1,4 +1,8 @@
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 
 import java.util.*;
 
@@ -20,6 +24,18 @@ import static org.junit.Assert.assertEquals;
  */
 public class PathTest {
 
+    @Rule
+    public TestName name = new TestName();
+
+    @Before
+    public void setUp() {
+        System.out.println("Running test `" + name.getMethodName() + "`\n");
+    }
+
+    @After
+    public void tearDown() {
+        System.out.println("----------------------------");
+    }
 
     /**
      * Graf:
@@ -79,8 +95,7 @@ public class PathTest {
             Float calculatedCost = path.findShortestCost(1, result.endPointIndex);
             Float correctCost = result.cost;
             assertEquals(correctCost, calculatedCost);
-            System.out.println("Index " + result.endPointIndex + " calculation valid");
-            System.out.println("----------------------------");
+            System.out.println("Index " + result.endPointIndex + " calculation valid\n");
         }
     }
 
