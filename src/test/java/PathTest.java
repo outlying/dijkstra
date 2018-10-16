@@ -48,6 +48,7 @@ public class PathTest {
                 triple(1, 2, 5f));
 
         List<Result> correctResults = correctResults(
+                indexResult(1, 0f), // Trivial, if start and end is the same the we should get 0
                 indexResult(2, 1 / 5f));
 
         verify(graph, correctResults);
