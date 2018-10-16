@@ -27,11 +27,6 @@ public class PathTest {
     @Rule
     public TestName name = new TestName();
 
-    @Before
-    public void setUp() {
-        System.out.println("Running test `" + name.getMethodName() + "`\n");
-    }
-
     @After
     public void tearDown() {
         System.out.println("----------------------------");
@@ -110,11 +105,10 @@ public class PathTest {
         Path path = factoryPath(graph);
 
         for (Result result : results) {
-            System.out.println("Testing for index " + result.endPointIndex);
+            System.out.println("Testing in `" + name.getMethodName() + "` for index " + result.endPointIndex);
             Float calculatedCost = path.findShortestCost(1, result.endPointIndex);
             Float correctCost = result.cost;
             assertEquals(correctCost, calculatedCost);
-            System.out.println("Index " + result.endPointIndex + " calculation valid\n");
         }
     }
 
