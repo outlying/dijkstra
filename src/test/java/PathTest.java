@@ -28,7 +28,7 @@ public class PathTest {
      */
     @Test
     public void simple() {
-        Main.Graph graph = graph(
+        Set<Main.Triple<Integer, Integer, Float>> graph = graph(
                 triple(1, 2, 5f));
 
         List<Result> correctResults = correctResults(
@@ -53,7 +53,7 @@ public class PathTest {
      */
     @Test
     public void moreComplex() {
-        Main.Graph graph = graph(
+        Set<Main.Triple<Integer, Integer, Float>> graph = graph(
                 triple(1, 2, 2f),
                 triple(1, 3, 5f),
                 triple(2, 3, 2f),
@@ -71,7 +71,7 @@ public class PathTest {
     /**
      * Weryfikuje graf
      */
-    private void verify(Main.Graph graph, List<Result> results) {
+    private void verify(Set<Main.Triple<Integer, Integer, Float>> graph, List<Result> results) {
         Path path = factoryPath(graph);
 
         for (Result result : results) {
@@ -87,7 +87,7 @@ public class PathTest {
     /**
      * Budowanie klasy liczącej
      */
-    private Path factoryPath(Main.Graph graph) {
+    private Path factoryPath(Set<Main.Triple<Integer, Integer, Float>> graph) {
         return new Path(graph);
     }
 
@@ -111,10 +111,10 @@ public class PathTest {
      * Pomocnicza, ułatwia tworzenie grafu
      */
     @SafeVarargs
-    private static Main.Graph graph(Main.Triple<Integer, Integer, Float>... triples) {
+    private static Set<Main.Triple<Integer, Integer, Float>> graph(Main.Triple<Integer, Integer, Float>... triples) {
         Set<Main.Triple<Integer, Integer, Float>> triplesList = new HashSet<>();
         Collections.addAll(triplesList, triples);
-        return new Main.Graph(triplesList);
+        return triplesList;
     }
 
     /**
