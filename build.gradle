@@ -15,4 +15,6 @@ dependencies {
 
     // Required for JDBC MySql connection (will self register)
     compile 'mysql:mysql-connector-java:8.0.12'
+
+    testCompile 'junit:junit:4.12'
 }

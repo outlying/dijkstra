@@ -6,7 +6,7 @@ public class Path {
         this.graph = graph;
     }
 
-    public float findShortestCost(Integer startNodeIndex, Integer endNodeIndex){
+    public Float findShortestCost(Integer startNodeIndex, Integer endNodeIndex){
 
         Main.Graph.Node startNode = graph.getNodeWithIndex(startNodeIndex);
         Main.Graph.Node endNode = graph.getNodeWithIndex(endNodeIndex);

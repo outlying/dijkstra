@@ -63,9 +63,9 @@ public class Main {
      */
     public final static class Graph {
 
-        private Set<Node> nodes;
+        private Set<Node> nodes = new HashSet<>();
 
-        private Graph(Set<Triple<Integer, Integer, Float>> triples) {
+        public Graph(Set<Triple<Integer, Integer, Float>> triples) {
 
             for (Triple<Integer, Integer, Float> item : triples) {
                 Node leftNode = new Node(item.first);
@@ -77,6 +77,9 @@ public class Main {
 
                 leftNode.addConnection(toRight);
                 rightNode.addConnection(toLeft);
+
+                nodes.add(leftNode);
+                nodes.add(rightNode);
             }
         }
 
@@ -99,7 +102,7 @@ public class Main {
         public final static class Node {
 
             private Integer index;
-            private Set<Connection> connections;
+            private Set<Connection> connections = new HashSet<>();
 
             private Node(Integer index) {
                 this.index = index;
