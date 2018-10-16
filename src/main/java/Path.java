@@ -15,8 +15,16 @@ public class Path {
         Graph.Node startNode = graph.getNodeWithIndex(startNodeIndex);
         Graph.Node endNode = graph.getNodeWithIndex(endNodeIndex);
 
+        // Star node has 0 arrival cost, always
+        startNode.arrivalCost = 0f;
+
+        calculateNeighborCosts(startNode);
 
         return 0.2f;
+    }
+
+    private void calculateNeighborCosts(Graph.Node origin) {
+
     }
 
     /**
@@ -65,20 +73,14 @@ public class Path {
             private Integer index;
             private Set<Connection> connections = new HashSet<>();
 
+            private Float arrivalCost = Float.MAX_VALUE;
+
             private Node(Integer index) {
                 this.index = index;
             }
 
-            public Set<Connection> getConnections() {
-                return connections;
-            }
-
             private boolean addConnection(Connection connection) {
                 return connections.add(connection);
-            }
-
-            public Integer getIndex() {
-                return index;
             }
 
             @Override
