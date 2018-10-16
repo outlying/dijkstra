@@ -99,7 +99,7 @@ public class Main {
         public final static class Node {
 
             private Integer index;
-            private Set<Connection> connections;
+            private Set<Connection> connections = new HashSet<>();
 
             private Node(Integer index) {
                 this.index = index;
